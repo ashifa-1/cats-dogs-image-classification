@@ -1,44 +1,48 @@
-# Cats vs Dogs Image Classification using Transfer Learning
+# Adapt a Pre-trained Model for Custom Image Classification
 
-## About the Project
-This project is about building an image classification model that can tell whether an image contains a cat or a dog.  
-I used a pre-trained deep learning model (ResNet50) and applied transfer learning to adapt it to a custom dataset.
+## Overview
 
-The main goal of this project was to understand how transfer learning works in practice and how a pre-trained CNN can be fine-tuned for a new task.
+This project focuses on building an image classification model to identify whether an image contains a cat or a dog.  
+The main objective was to understand and apply transfer learning using a pre-trained CNN model and compare its performance with a basic CNN built from scratch.
+
+The project was implemented using TensorFlow and Keras, and all experiments were carried out in a Jupyter Notebook.
 
 ---
 
 ## Dataset
-- Cats vs Dogs image dataset
-- Around 1500 images for each class
-- The dataset was manually organized into:
-  - training
+- Custom Cats vs Dogs image dataset
+- Around 1500 images per class
+- Dataset was manually organized into:
+  - train
   - validation
   - test folders
-- While working with the dataset, I noticed that some images were corrupted.  
-  These images were detected using PIL and removed before training.
+- During preprocessing, a few corrupted images were found and removed using PIL image verification
+
+> **Note:**  
+> Due to size limitations, the dataset is not included directly in this repository.  
+> The folder structure used for training is shown in the notebook.
 
 ---
 
 ## Approach
-1. First, I built a simple baseline CNN model from scratch to understand the performance without transfer learning.
-2. Then, I used ResNet50 pre-trained on ImageNet as the base model.
-3. **Phase 1 (Feature Extraction)**  
-   - All layers of ResNet50 were frozen  
-   - Only a custom classification head was trained
-4. **Phase 2 (Fine-tuning)**  
-   - The top layers of ResNet50 were unfrozen  
-   - The model was trained again with a very small learning rate
-5. The final model was evaluated on the test dataset using accuracy and other classification metrics.
-6. Grad-CAM was used to visualize which parts of the image the model focused on while making predictions.
+1. A simple baseline CNN model was created to understand basic performance.
+2. ResNet50 pre-trained on ImageNet was used for transfer learning.
+3. **Phase 1 (Feature Extraction):**
+   - All layers of ResNet50 were frozen.
+   - A custom classification head was added and trained.
+4. **Phase 2 (Fine-tuning):**
+   - The top layers of ResNet50 were unfrozen.
+   - Training continued with a very small learning rate to improve performance.
+5. The final model was evaluated on the test dataset.
+6. Grad-CAM was used to visualize which regions of an image influenced the model’s predictions.
 
 ---
 
 ## Results
-- Baseline CNN accuracy was around **70%**
-- ResNet50 after Phase 1 showed improved performance
-- After fine-tuning (Phase 2), the accuracy increased further (around **80%+**)
-- This clearly showed the advantage of transfer learning over training a model from scratch
+- Baseline CNN Accuracy: ~70%
+- ResNet50 after Phase 1 showed improved accuracy
+- After fine-tuning (Phase 2), accuracy increased further (around 80%+)
+- Transfer learning clearly performed better than training a model from scratch
 
 ---
 
@@ -50,13 +54,25 @@ The model was evaluated using:
 - F1-score
 - Confusion Matrix
 
-The confusion matrix helped in understanding how well the model classified cats and dogs and where it made mistakes.
+These metrics helped analyze both overall performance and class-wise predictions.
 
 ---
 
 ## Model Interpretability
-Grad-CAM visualizations were generated to understand which regions of the image influenced the model’s prediction.  
-This helped in interpreting the model instead of treating it like a black box.
+Grad-CAM visualizations were generated to understand where the model focused while making predictions.  
+This helped in interpreting the model’s decisions instead of treating it as a black box.
+
+---
+
+## Files Not Included in the Repository
+Some files were intentionally not pushed to GitHub due to size and best practices:
+
+- Trained model files (`.h5` / `.keras`)  
+  - These files are larger than GitHub’s 100MB limit.
+- Virtual environment (`venv/`)
+  - Dependencies are listed in `requirements.txt`.
+
+This follows standard machine learning project practices.
 
 ---
 
@@ -73,7 +89,7 @@ This helped in interpreting the model instead of treating it like a black box.
 
 ---
 
-## How to Run the Project
-```bash
+## How to Run
+
 pip install -r requirements.txt
 jupyter notebook
