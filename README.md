@@ -18,9 +18,9 @@ The project was implemented using TensorFlow and Keras, and all experiments were
   - test folders
 - During preprocessing, a few corrupted images were found and removed using PIL image verification
 
-> **Note:**  
-> Due to size limitations, the dataset is not included directly in this repository.  
-> The folder structure used for training is shown in the notebook.
+ **Note:**  
+ Due to size limitations, the dataset is not included directly in this repository.  
+ The folder structure used for training is shown in the notebook.
 
 ---
 
